@@ -235,14 +235,15 @@ class Text(Tile):
 
     def _display(self, tbox, parent):
         tbox = self._draw_borders_and_title(tbox)
-        for dx, line in enumerate(self.text.splitlines()):
+        split_lines = self.text.splitlines()
+        for dx, line in enumerate(split_lines):
             print(
                 tbox.t.color(self.color)
                 + tbox.t.move(tbox.x + dx, tbox.y)
                 + line
                 + " " * (tbox.w - len(line))
             )
-        dx += 1
+        dx = len(split_lines)
         while dx < tbox.h:
             print(tbox.t.move(tbox.x + dx, tbox.y) + " " * tbox.w)
             dx += 1
@@ -265,7 +266,7 @@ class Log(Tile):
         for i in range(0, log_range):
             line = self.logs[start + i]
             print(tbox.t.move(tbox.x + i, tbox.y) + line + " " * (tbox.w - len(line)))
-
+        i = log_range - 1
         if i < tbox.h:
             for i2 in range(i + 1, tbox.h):
                 print(tbox.t.move(tbox.x + i2, tbox.y) + " " * tbox.w)

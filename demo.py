@@ -34,7 +34,7 @@ if __name__ == '__main__':
                 )
             ),
             VSplit(
-                Text('Hello World,\nthis is dashing.', border_color=2),
+                Text('Hello World,\nthis is dashing.', border_color=2, color=2),
                 Log(title='logs', border_color=5),
                 VChart(border_color=2, color=2),
                 HChart(border_color=2, color=2),
@@ -43,6 +43,7 @@ if __name__ == '__main__':
             ),
             title='Dashing',
         )
+    text = ui.items[1].items[0]
     log = ui.items[1].items[1]
     vchart = ui.items[1].items[2]
     hchart = ui.items[1].items[3]
@@ -53,6 +54,7 @@ if __name__ == '__main__':
     log.append("2 -----")
     prev_time = time()
     for cycle in range(0, 100):
+        text.text = f"Cycle {cycle}"
         ui.items[0].items[0].value = int(50 + 49.9 * math.sin(cycle / 80.0))
         ui.items[0].items[1].value = int(50 + 45 * math.sin(cycle / 20.0))
         ui.items[0].items[2].value = int(50 + 45 * math.sin(cycle / 30.0 + 3))
